@@ -1,8 +1,8 @@
-import { useHistory, Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import authenticator from "../router/authenticator"
 
 const Home = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   return (
     <>
@@ -10,7 +10,7 @@ const Home = () => {
       <Link to="/internal">Internal Page</Link>
       <button onClick={() => {
         authenticator.logout()
-        history.push('/login')
+        navigate('/login')
       }}>
           Click Here to Logout
       </button>

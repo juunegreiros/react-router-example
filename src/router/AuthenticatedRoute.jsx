@@ -1,19 +1,12 @@
-import { Redirect, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import authenticator from './authenticator'
 
 const AuthenticatedRoute = ({ children }) => {
-  return (
-    <Route 
-      render={() => {
-        if (authenticator.isAuthenticated) {
-          return children
-        }
-
-        return <Redirect to="/login" />
-      }}
-    />
-  )
+  if(authenticator.isAuthenticated) {
+    return children
+  }
+  return <Navigate to="/login" />
 }
 
 export default AuthenticatedRoute

@@ -1,6 +1,6 @@
 import {
   BrowserRouter,
-  Switch,
+  Routes,
   Route
 } from "react-router-dom";
 
@@ -9,25 +9,40 @@ import Login from './pages/Login'
 import ExternalPage from './pages/ExternalPage'
 import InternalPage from './pages/InternalPage'
 import AuthenticatedRoute from './router/AuthenticatedRoute';
-import authenticator from './router/authenticator'
 
 const App = () => (
   <BrowserRouter>
     {/* Loads the first route that matches the url, if no exact includes subroutes */}
-    <Switch>
-      <Route path="/login" exact>
-        <Login />
-      </Route>
-      <Route path="/external">
-        <ExternalPage />
-      </Route>
-      <AuthenticatedRoute path="/internal">
-        <InternalPage />
-      </AuthenticatedRoute>
-      <AuthenticatedRoute path="/">
-        <Home />
-      </AuthenticatedRoute>
-    </Switch>
+    <Routes>
+      <Route
+        path="/login"
+        element={
+          <Login />
+        }
+      />
+      <Route
+        path="/external"
+        element={
+          <ExternalPage />
+        }
+      />
+      <Route
+        path="/internal"
+        element={
+          <AuthenticatedRoute>
+            <InternalPage />
+          </AuthenticatedRoute>
+        }
+      />
+      <Route
+        path="/"
+        element={
+          <AuthenticatedRoute>
+            <Home />
+          </AuthenticatedRoute>
+        }
+      />
+    </Routes>
 </BrowserRouter>
 )
 

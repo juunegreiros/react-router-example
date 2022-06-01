@@ -1,8 +1,8 @@
-import { useHistory, Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import authenticator from "../router/authenticator"
 
 const Login = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   return (
     <>
@@ -17,7 +17,7 @@ const Login = () => {
       </ul>
       <button onClick={() => {
         authenticator.login()
-        history.push('/')
+        navigate('/')
       }}>
           Click Here to login
       </button>
